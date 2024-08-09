@@ -12,7 +12,7 @@ let cron;
 const levelSettings = {
     easy: { minute: 2, second: 0 },
     medium: { minute: 1, second: 30 },
-    difficult: { minute: 1, second: 00 },
+    difficult: { minute: 1, second: 0 },
 };
 
 elements.$playPauseButton.addEventListener("click", function () {
