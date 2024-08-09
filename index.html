@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/global-style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Neucha&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="imagex/png" href="assets/img/brain.ico">
+    <script type="module" src="js/main.js"></script>
+    <title>Jogo da Memória</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="overlay">
+            <div class="modal" id="modal-player-name">
+                <div class="player-name-container">
+                    <form>
+                        <input type="text" placeholder="Oi ! Qual seu nome ?" id="player-name">
+                        <button class="btn-primary" id="send-name">
+                            Próximo
+                            <img src="assets/img/arrow-right.png" alt="Seta para direita" />
+                        </button>
+                    </form>
+                </div>
+                <div class="brain-img-container">
+                    <img src="assets/img/brainHi.png" alt="Cerebro se exercitando">
+                </div>
+            </div>
+            <div class="modal" id="modal-start-level">
+                <div class="start-level-container" id="start-level-container">
+                    <h1 id="player-name-title"> </h1>
+                    <h1>Escolha o seu nível</h1>
+                    <button class="btn-primary" id="easy">Fácil</button>
+                    <button class="btn-primary" id="medium">Médio</button>
+                    <button class="btn-primary" id="difficult">Dificíl</button>
+                </div>
+                <div class="brain-img-container">
+                    <img src="assets/img/brainPlayer.png" alt="Cerebro se exercitando">
+                </div>
+            </div>
+            <div class="modal" id="modal-end-game">
+                <div class="end-game" id="end-game">
+                    <h1 class="end-game-title"></h1>
+                    <div class="end-game-container-options">
+                        <div class="end-game-options">
+                            <button class="btn-primary" id="save-record">Salvar record</button>
+                            <button class="btn-primary" id="play-again">Jogar novamente</button>
+                            <button class="btn-primary" id="change-player">Trocar de jogador</button>
+                        </div>
+                        <div class="brain-end-game-container">
+                            <img src="assets/img/brainWin.png" alt="" id="end-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <audio id="gameAudio" preload="auto" autoplay>
+            <source src="assets/audio/funnySong.mp3" type="audio/mp3">
+        </audio>
+        <div class="playPauseButton-container">
+            <button id="playPauseButton" aria-label="Play">
+                <img id="playIcon" class="icon" src="assets/img/music.gif" alt="Play" style="display: none;">
+                <img id="pauseIcon" class="icon" src="assets/img/pause.gif" alt="Pause">
+            </button>
+        </div>
+        <audio id="flopSound" src="assets/audio/flop.ogg" preload="auto"></audio>
+        <audio id="flipSound" src="assets/audio/flip.wav" preload="auto"></audio>
+        <audio id="successSound" src="assets/audio/success.wav" preload="auto"></audio>
+        <audio id="winSound" src="assets/audio/win.mp3" preload="auto"></audio>
+        <audio id="loseSound" src="assets/audio/loseSong.wav" preload="auto"></audio>
+        <div class="scoreboardContainer">
+            <span id="score">Pontos: 0</span>
+            <span id="timer">Tempo: 00 : 00</span>
+        </div>
+        <div id="card-container">
+        </div>
+    </div>
+</body>
+
+</html>

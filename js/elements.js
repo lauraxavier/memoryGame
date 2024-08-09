@@ -1,0 +1,22 @@
+export const $cardContainer = document.getElementById("card-container");
+export const $overlay = document.querySelector(".overlay");
+export const $score = document.getElementById("score");
+export const $timer = document.getElementById("timer");
+export const $flopSound = document.getElementById("flopSound");
+export const $flipSound = document.getElementById("flipSound");
+export const $successSound = document.getElementById("successSound");
+export const $winSound = document.getElementById("winSound");
+export const $audio = document.getElementById("gameAudio");
+export const $playPauseButton = document.getElementById("playPauseButton");
+export const $playIcon = document.getElementById("playIcon");
+export const $pauseIcon = document.getElementById("pauseIcon");
+export const $modalPlayerName = document.getElementById("modal-player-name");
+export const $modalStartLevel = document.getElementById("modal-start-level");
+export const $modalEndGame = document.getElementById("modal-end-game");
+export const $endGameTitle =
+    document.getElementsByClassName("end-game-title")[0];
+export const $endImg = document.getElementById("end-img");
+export const $saveRecord = document.getElementById("save-record");
+export const $loseSound = document.getElementById("loseSound");
+export const $playAgain = document.getElementById("play-again");
+export const $changePlayer = document.getElementById("change-player");
