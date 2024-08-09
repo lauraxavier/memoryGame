@@ -186,13 +186,13 @@ const endGame = () => {
             elements.$loseSound.play();
             elements.$endGameTitle.textContent = `Foi quase! Tente outra vez! Você fez ${score} pontos`;
             elements.$endImg.src = "assets/img/brainAlmost.png";
-            elements.$saveRecord.style.display = "block";
+            elements.$saveRecord.style.display = "none";
         }
         if (allFlipped) {
             elements.$winSound.play();
             elements.$endGameTitle.textContent = `Uauu, você é incrível! Você fez ${score} pontos`;
             elements.$endImg.src = "assets/img/brainWin.png";
-            elements.$saveRecord.style.display = "block";
+            elements.$saveRecord.style.display = "none";
         }
     }
 };
