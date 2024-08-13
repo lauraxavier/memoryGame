@@ -1,33 +1,17 @@
-import { shuffle } from "./utils.js";
+import { shuffle, getLevel } from "./utils.js";
 import { cheap } from "./cards.js";
-import * as elements from "./elements.js";
 import { startTime, stop, endTime } from "./timer.js";
+import { levelSettings } from "./level.js";
+import * as elements from "./elements.js";
+import { musicControls } from "./sounds.js";
 
 const flipped = [];
 let score = 0;
 let minute = 0;
 let second = 0;
-const level = localStorage.getItem("level");
+const level = getLevel();
 
-const levelSettings = {
-    easy: { minute: 2, second: 0 },
-    medium: { minute: 1, second: 30 },
-    difficult: { minute: 0, second: 5 },
-};
-
-elements.$playPauseButton.addEventListener("click", function () {
-    if (elements.$audio.paused) {
-        elements.$audio.play();
-        elements.$playPauseButton.classList.add("playing");
-        elements.$playIcon.style.display = "none";
-        elements.$pauseIcon.style.display = "inline";
-    } else {
-        elements.$audio.pause();
-        elements.$playPauseButton.classList.remove("playing");
-        elements.$playIcon.style.display = "inline";
-        elements.$pauseIcon.style.display = "none";
-    }
-});
+musicControls();
 
 export const startGame = (level) => {
     stop();

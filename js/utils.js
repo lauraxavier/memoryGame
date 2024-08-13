@@ -4,3 +4,11 @@ export function shuffle(cards) {
     }
     return cards.sort(randOrd);
 }
+
+export function getLevel() {
+    localStorage.getItem("level");
+}
+
+export function getPlayerName() {
+    localStorage.getItem("name");
+}

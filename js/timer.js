@@ -3,9 +3,7 @@ import * as elements from "./elements.js";
 let cron = null;
 export let endTime = false;
 
-export const startTime = (initialMinute, initialSecond, endGameCallback) => {
-    let minute = initialMinute;
-    let second = initialSecond;
+export const startTime = (minute, second, endGameCallback) => {
     endTime = false;
 
     cron = setInterval(() => {
