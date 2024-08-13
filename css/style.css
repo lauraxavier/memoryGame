@@ -291,6 +291,10 @@
 /* @media */
 
 @media (max-width: 768px) {
+    body {
+        background-size: auto;
+    }
+
     #card-container {
         width: 100%;
         height: auto;
@@ -330,6 +334,11 @@
 
     #send-name {
         margin-bottom: 10px;
+    }
+
+    .end-game-title {
+        margin-bottom: 0;
+        margin-top: 2px;
     }
 }
 

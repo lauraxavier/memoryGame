@@ -1,18 +1,18 @@
 import { shuffle } from "./utils.js";
 import { cheap } from "./cards.js";
 import * as elements from "./elements.js";
+import { startTime, stop, endTime } from "./timer.js";
 
 const flipped = [];
 let score = 0;
 let minute = 0;
 let second = 0;
-let endTime = false;
-let cron;
+const level = localStorage.getItem("level");
 
 const levelSettings = {
     easy: { minute: 2, second: 0 },
     medium: { minute: 1, second: 30 },
-    difficult: { minute: 1, second: 0 },
+    difficult: { minute: 0, second: 5 },
 };
 
 elements.$playPauseButton.addEventListener("click", function () {
@@ -30,38 +30,18 @@ elements.$playPauseButton.addEventListener("click", function () {
 });
 
 export const startGame = (level) => {
-    clearInterval(cron);
+    stop();
     const settings = levelSettings[level];
-    if (settings) {
-        minute = settings.minute;
-        second = settings.second;
-    }
+
+    minute = settings.minute;
+    second = settings.second;
 
     elements.$audio.currentTime = 0;
     elements.$audio.play();
 
     elements.$score.textContent = `Pontos: ${score}`;
 
-    const stop = () => {
-        clearInterval(cron);
-    };
-
-    cron = setInterval(() => {
-        second -= 1;
-        if (second === -1) {
-            minute -= 1;
-            second = 59;
-        }
-        let formattedSecond = second < 10 ? `0${second}` : second;
-        let formattedMinute = minute < 10 ? `0${minute}` : minute;
-        elements.$timer.textContent = `Tempo: ${formattedMinute} : ${formattedSecond}`;
-
-        if (minute === 0 && second === 0) {
-            stop();
-            endTime = true;
-            endGame();
-        }
-    }, 1000);
+    startTime(minute, second, endGame);
 
     shuffle(cheap).forEach((item) => {
         const $card = document.createElement("div");
@@ -135,18 +115,12 @@ const checkMatch = () => {
 };
 
 const resetGame = () => {
-    clearInterval(cron);
+    stop();
     score = 0;
     minute = 0;
     second = 0;
-    endTime = false;
-    flipped.length = 0;
 
     elements.$cardContainer.innerHTML = "";
-
-    elements.$score.textContent = `Pontos: ${score}`;
-    elements.$timer.textContent = `Tempo: 00 : 00`;
-
     elements.$audio.currentTime = 0;
     elements.$audio.play();
 
@@ -163,8 +137,6 @@ const endGame = () => {
         elements.$overlay.style.display = "flex";
         elements.$modalEndGame.style.display = "flex";
         elements.$modalStartLevel.style.display = "none";
-
-        const level = localStorage.getItem("level");
 
         elements.$playAgain.addEventListener("click", function () {
             resetGame();
