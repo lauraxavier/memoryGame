@@ -1,7 +1,7 @@
 import { shuffle, getLevel } from "./utils.js";
 import { cheap } from "./cards.js";
-import { startTime, stop, endTime } from "./timer.js";
 import { levelSettings } from "./level.js";
+import { Timer } from "./Timer.js";
 import * as elements from "./elements.js";
 import { musicControls } from "./sounds.js";
 
@@ -9,23 +9,34 @@ const flipped = [];
 let score = 0;
 let minute = 0;
 let second = 0;
+let endTime = false;
 const level = getLevel();
+
+const timer = new Timer(
+    () => {
+        endTime = true;
+        endGame();
+    },
+    (formattedTime) => {
+        elements.$timer.textContent = `Tempo: ${formattedTime}`;
+    }
+);
 
 musicControls();
 
 export const startGame = (level) => {
-    stop();
+    timer.reset();
     const settings = levelSettings[level];
 
     minute = settings.minute;
     second = settings.second;
 
+    timer.start(minute, second);
+
     elements.$audio.currentTime = 0;
     elements.$audio.play();
 
     elements.$score.textContent = `Pontos: ${score}`;
-
-    startTime(minute, second, endGame);
 
     shuffle(cheap).forEach((item) => {
         const $card = document.createElement("div");
@@ -60,7 +71,7 @@ export const startGame = (level) => {
 
         elements.$cardContainer.appendChild($card);
 
-        $card.addEventListener("click", function (e) {
+        $card.addEventListener("click", function () {
             if (item.flip) {
                 return;
             }
@@ -99,7 +110,7 @@ const checkMatch = () => {
 };
 
 const resetGame = () => {
-    stop();
+    timer.reset();
     score = 0;
     minute = 0;
     second = 0;
@@ -116,7 +127,7 @@ const endGame = () => {
     const allFlipped = cheap.every((item) => item.flip === true);
 
     if (allFlipped || endTime) {
-        stop();
+        timer.reset();
         elements.$audio.pause();
         elements.$overlay.style.display = "flex";
         elements.$modalEndGame.style.display = "flex";

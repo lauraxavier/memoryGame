@@ -6,9 +6,9 @@ export function shuffle(cards) {
 }
 
 export function getLevel() {
-    localStorage.getItem("level");
+    return localStorage.getItem("level");
 }
 
 export function getPlayerName() {
-    localStorage.getItem("name");
+    return localStorage.getItem("name");
 }
